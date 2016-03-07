@@ -63,7 +63,6 @@ def reduce_quality_and_make_thumbs(filename, path, photo_size, attribution=''):
             # Size for the big and main thumbnail
             big_width = 500
             big_height = max(((big_width + 1.0) / ratio), 600)
-            print big_width, big_height
             # big_height = big_height if big_height > 450 else 450
             make_thumbnail.delay(filename, out_filename=thumb_big_filename, size=(big_width, big_height))
             # Small Thumbnail
