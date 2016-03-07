@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<div class="interaction">
+    {% if user.is_authenticated %}
+        <a href="/like/{{ post.ref_id }}" class="like_button" title="like">
+            <i class="fa fa-thumbs-up fa-lg {% if post.id in upvotes %} color_it {% endif %}"></i>
+        </a>
+        <div class="points">
+            <a href="/view_post/{{ post.ref_id }}">{{ post.rep_count }} </a>
+        </div>
+        <a href="/dislike/{{ post.ref_id }}" class="dislike_button" title="dislike">
+            <i class="fa fa-thumbs-down fa-lg {% if post.id in downvotes  %} color_it {% endif %}"></i>
+        </a>
+        <a href="/view_post/{{ post.ref_id }}" class="comment_button">
+            <i class="fa fa-comments  fa-lg"></i> {{ post.comments }}&nbsp;&nbsp;Comments</a>
+
+{#        <a href="/favorite/{{ post.ref_id }}" class="favorite_button" title="Add to favorites">#}
+{#            <i class="fa fa-heart fa-lg {% if post.id in favorites %} color_it{% endif %}"></i></a>#}
+    {% else %}
+
+            <a href="/like/{{ post.ref_id }}" class="like_button_login">
+                <i class="fa fa-thumbs-up fa-lg"></i>
+            </a>
+
+        <div class="points">
+            <a href="/view_post/{{ post.ref_id }}">{{ post.rep_count }}</a>
+        </div>
+
+        <a class="dislike_button_login" href="/dislike/{{ post.ref_id }}">
+        <i class="fa fa-thumbs-down fa-lg"></i>
+        </a>
+        <a class="comment_button" href="/view_post/{{ post.ref_id }}">
+            <i class="fa fa-comments fa-lg"></i> {{ post.comments }}&nbsp;&nbsp;Comments
+        </a>
+{#        <a class="favorite_button_login" href="/favorite/{{ post.ref_id }}" title="Add to favorites">#}
+{#            <i class="fa fa-heart fa-lg"></i>#}
+{#        </a>#}
+    {% endif %}
+
+    <div class="download_button">
+{#        <a href="{{ media_url }}{{ post.photo_url }}" download="{{ post.title }}" title="Download"><span#}
+{#                class="fa fa-download fa-lg"></span></a>#}
+        {#    <a href="{{ media_url }}{{ post.photo_url }}"><img src="{% static 'img/Okay.png'  %}" width="30"#}
+        {#                                                        class="sepia"></a>#}
+    </div>
+</div>

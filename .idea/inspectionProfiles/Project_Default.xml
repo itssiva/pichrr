@@ -1,0 +1,58 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="45">
+            <item index="0" class="java.lang.String" itemvalue="ipaddress" />
+            <item index="1" class="java.lang.String" itemvalue="PyJWT" />
+            <item index="2" class="java.lang.String" itemvalue="python-dateutil" />
+            <item index="3" class="java.lang.String" itemvalue="cffi" />
+            <item index="4" class="java.lang.String" itemvalue="psycopg2" />
+            <item index="5" class="java.lang.String" itemvalue="django-rest-framework-social-oauth2" />
+            <item index="6" class="java.lang.String" itemvalue="kombu" />
+            <item index="7" class="java.lang.String" itemvalue="ndg-httpsclient" />
+            <item index="8" class="java.lang.String" itemvalue="pyasn1" />
+            <item index="9" class="java.lang.String" itemvalue="pycparser" />
+            <item index="10" class="java.lang.String" itemvalue="requests" />
+            <item index="11" class="java.lang.String" itemvalue="redis" />
+            <item index="12" class="java.lang.String" itemvalue="sqlparse" />
+            <item index="13" class="java.lang.String" itemvalue="requests-oauthlib" />
+            <item index="14" class="java.lang.String" itemvalue="celery" />
+            <item index="15" class="java.lang.String" itemvalue="pyOpenSSL" />
+            <item index="16" class="java.lang.String" itemvalue="django-braces" />
+            <item index="17" class="java.lang.String" itemvalue="oauthlib" />
+            <item index="18" class="java.lang.String" itemvalue="anyjson" />
+            <item index="19" class="java.lang.String" itemvalue="django-boto" />
+            <item index="20" class="java.lang.String" itemvalue="django-redis-cache" />
+            <item index="21" class="java.lang.String" itemvalue="django-celery" />
+            <item index="22" class="java.lang.String" itemvalue="djangorestframework" />
+            <item index="23" class="java.lang.String" itemvalue="python-openid" />
+            <item index="24" class="java.lang.String" itemvalue="billiard" />
+            <item index="25" class="java.lang.String" itemvalue="django-contrib-comments" />
+            <item index="26" class="java.lang.String" itemvalue="six" />
+            <item index="27" class="java.lang.String" itemvalue="django-oauth-toolkit" />
+            <item index="28" class="java.lang.String" itemvalue="pysftp" />
+            <item index="29" class="java.lang.String" itemvalue="amqp" />
+            <item index="30" class="java.lang.String" itemvalue="boto" />
+            <item index="31" class="java.lang.String" itemvalue="wheel" />
+            <item index="32" class="java.lang.String" itemvalue="cryptography" />
+            <item index="33" class="java.lang.String" itemvalue="ecdsa" />
+            <item index="34" class="java.lang.String" itemvalue="django-debug-toolbar" />
+            <item index="35" class="java.lang.String" itemvalue="gunicorn" />
+            <item index="36" class="java.lang.String" itemvalue="paramiko" />
+            <item index="37" class="java.lang.String" itemvalue="django-dbbackup" />
+            <item index="38" class="java.lang.String" itemvalue="Django" />
+            <item index="39" class="java.lang.String" itemvalue="python-social-auth" />
+            <item index="40" class="java.lang.String" itemvalue="django-allauth" />
+            <item index="41" class="java.lang.String" itemvalue="pytz" />
+            <item index="42" class="java.lang.String" itemvalue="enum34" />
+            <item index="43" class="java.lang.String" itemvalue="idna" />
+            <item index="44" class="java.lang.String" itemvalue="Pillow" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

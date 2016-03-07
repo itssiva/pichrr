@@ -1,0 +1,34 @@
+{% load template_filters %}
+{% if not posts.object_list|length_is:'0' %}
+            {% for post in posts %}
+                <div class="element">
+                    <div class="element_title">
+                        {{ post.title }}
+                    </div>
+                    <div class="img-content">
+            {% if post.post_type == 1 %}
+
+            <video autoplay loop  width="350">
+            <source src="{{ media_url }}{{ post.photo_url}}" type="video/mp4">
+            <source src="{{ media_url }}{{ post.photo_url|str_replace:".webm"}}" type="video/webm">
+
+            Your browser does not support the video tag.
+            </video>
+
+            {% else %}
+            <a href="{% url 'view_post' id=post.ref_id %}"><img src="{{ media_url }}{{ post.photo_url|str_replace:"_thumb_big." }}"></a>
+            {% endif %}
+        </div>
+                    <div class="meta-container">
+                        {% include 'interaction_container.html' %}
+                        {% include 'tag_container.html' %}
+                        {% include 'username_container.html' %}
+                    </div>
+                </div>
+            {% endfor %}
+            <span data-next="{{ offset }}"></span>
+{% else %}
+<div class="no_posts"><h2>No posts yet</h2></div>
+{% endif %}
+
+

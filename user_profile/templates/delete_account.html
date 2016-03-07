@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Change Password" %}{% endblock %}
+{% block content %}
+    <div class="col-sm-3 col-xs-12 settings_pane">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Settings</h3>
+            </div>
+            <div class="list-group">
+                <a href="{% url 'update_profile' %}" class="list-group-item ">Update Profile</a>
+                <a href="{% url 'account_change_password' %}" class="list-group-item">Change Password</a>
+                <a href="{% url 'delete_account' %}" class="list-group-item active">Delete Account</a>
+            </div>
+        </div>
+    </div>
+    <div class="delete_account">
+    <form method="POST" action="{% url 'delete_account' %}" class="col-sm-8 col-xs-12">
+        {% csrf_token %}
+        <h1>Do you want to delete your account ?</h1>
+        <a href="/" class="btn btn-primary" name="no" >No</a>
+        <button type="submit" class="btn btn-danger" name="yes">{% trans "Yes" %}</button>
+    </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+
+<div id="comments">
+<div><button type="button" class="btn btn-primary">{{ comment_count }}&nbsp;Comments</button></div>
+    {% for comment in comment_list %}
+        <div id="comment">
+        <div class="comment_pic">
+         <img src="{{ media_url }}{{ comment.user.userprofile.get_avatar}}" width="30">
+            <span class="pull-right"> &nbsp;&nbsp;&nbsp;{{ comment.submit_date|timesince}}</span>
+
+            <span class="pull-right"><a href="/profile/{{ comment.user_name }}" > {{ comment.user_name}}</a></span>
+            &nbsp;&nbsp;&nbsp;
+
+            </div>
+        <div class="comment_comment">
+        {{ comment.comment }}
+        </div>
+        </div>
+    {% endfor %}
+    <div class="comments-end">
+        <h3>End of Comments</h3>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{% load comments i18n %}
+{% if user.is_authenticated %}
+   <form action="{% comment_form_target %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path}}"/>
+        {% for field in form %}
+            {% if field.is_hidden %}
+                {{ field }}
+            {% else %}
+                {% if field.name == 'comment' %}
+                    <div class="panel-group {% if form.comment.errors %} has-error{% endif %}">
+
+                    <p><label class="control-label" for="{{ form.comment.id_for_label }}">{{ form.comment.label }}</label></p>
+                    <textarea cols="30" rows="2" class="form-control"
+                    id="{{ form.comment.id_for_label }}" name="{{ form.comment.html_name }}" maxlength="{{ form.comment.field.max_length }}"></textarea>
+                    <span class="help-block">(Comments may contain <strong>alphanumeric</strong> and <strong>_</strong> characters)</span>
+                    {% for error in form.comment.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+            <button type="submit" class="btn btn-success">Comment</button>
+   </form>
+{% else %}
+    <a href="/accounts/login" class="btn btn-primary"> Sign in to Comment</a>
+{% endif %}

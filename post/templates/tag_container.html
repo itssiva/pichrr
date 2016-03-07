@@ -1,0 +1,5 @@
+<div class="element_tags">
+    {% for tag in post.get_txt_tags_list %}
+    <a href="/tags/{{ tag }}/" class="single_tag"> <span class="fa fa-tags"></span> {{ tag }}</a>&nbsp;&nbsp;
+    {% endfor %}
+</div>

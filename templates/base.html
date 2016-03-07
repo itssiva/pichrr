@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load template_filters %}
+<html xmlns:https="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block meta %}
+    {% endblock %}
+    <title>
+        {% block title %}pichrr{% endblock %}
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" async></script>
+    <link href="{% static 'img/favicon.png' %}" rel="icon" type="image/png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    {% block stylesheet %}{% endblock %}
+</head>
+<body>
+<div class="wrapper" id="wrapper">
+    <div class="header">
+        {% include 'header.html' %}
+    </div>
+    {% include 'messages.html' %}
+    {% block content %}{% endblock %}
+    <a href="#" class="back-to-top"><i class="fa fa-arrow-circle-up fa-2x"></i><span class="scroll-top">&nbsp;&nbsp;&nbsp;<strong>SCROLL
+        TO TOP</strong></span></a>
+    {% block loader %}
+    {% endblock %}
+    {% include 'footer.html' %}
+</div>
+<script src="{% static 'js/custom.js' %}" type="text/javascript" async></script>
+<script src="{% static 'js/actions.js' %}" type="text/javascript" async></script>
+
+</body>
+</html>
+

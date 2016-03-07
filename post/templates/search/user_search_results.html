@@ -1,0 +1,13 @@
+<div class="user_results">
+    {% if users %}
+        {% for user in users %}
+            <div class="user_list">
+                <p><a href="/profile/{{ user }}"><i class="fa fa-user fa-lg"></i> {{ user }}</a></p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="jumbotron">
+            <h1>Sorry there are no results found</h1>
+        </div>
+    {% endif %}
+</div>

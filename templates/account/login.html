@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+    <div class="login_page">
+    <div class="col-sm-12 col-md-6 col-xs-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{% trans "Sign In" %}</h3>
+            </div>
+            <br>
+            <div class="social_login">
+            <a class="btn btn-success" href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google fa-lg"></i>Google Sign in</a>
+            <a class="btn btn-primary" href="{% url 'social:begin' 'facebook' %}"><i class="fa fa-facebook fa-lg"></i> Facebook Sign in</a>
+            </div>
+            <div class="login_or">Or</div>
+            <div class="panel-body">
+                <form class="login" method="POST" action="{% url 'account_login' %}">
+                    {% csrf_token %}
+                    {#        {% if form.errors %}#}
+                    {#    {% for field in form %}#}
+                    {#        {% for error in field.errors %}#}
+                    {#            <div class="alert alert-error">#}
+                    {#                <strong>{{ error|escape }}</strong>#}
+                    {#            </div>#}
+                    {#        {% endfor %}#}
+                    {#    {% endfor %}#}
+                    {% for error in form.non_field_errors %}
+                            <div class="alert alert-error">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+{#                    {% endif %}#}
+
+                    <div class="form-group {% if form.login.errors %} has-error{% endif %}">
+
+                        <input type="text" class="form-control" id="{{ form.login.id_for_label }}"
+                               placeholder="username/email" name="{{ form.login.html_name }}" value="{{ form.login.value|default_if_none:'' }}">
+                        {% for error in form.login.errors %}
+                            <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <input type="password" class="form-control"
+                               id="{{ form.password.id_for_label }}" placeholder="{{ form.password.label }}"
+                               name="{{ form.password.html_name }}">
+                        {% for error in form.password.errors %}
+                            <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.remember.id_for_label }}">{{ form.remember.label }}</label>
+                        <input type="checkbox" id="{{ form.remember.id_for_label }}"
+                               name="{{ form.remember.html_name }}">
+                    </div>
+
+                    {#{% for error in form.errors %}#}
+                    {#{{ error }}#}
+                    {#{% endfor %}#}
+                    {#<br>#}
+                    {#{{ form.errors }}#}
+                    {#<br>#}
+                    {#{% for field in form %}#}
+                    {#{{ field.id_for_label }}#}
+                    {#{% endfor %}#}
+                    {#<br>#}
+                    {#  {{ form.as_p }}#}
+
+
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                    {% endif %}
+                    <button class=" btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+                    <a class="btn btn-default" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+
+                </form>
+                <!--{% if socialaccount_providers %}-->
+                    <!--<br>-->
+                    <!--<div>-->
+                    <!--<p>{% blocktrans with site.name as site_name %}-->
+                        <!--Don't have an account? <a href="{{ signup_url }}" class="btn btn-primary">sign up</a>-->
+                        <!--&lt;!&ndash;for {{ site_name }} account.&ndash;&gt;-->
+                        <!--{% endblocktrans %}</p>-->
+                    <!--</div>-->
+
+
+                    <!--{% include "socialaccount/snippets/login_extra.html" %}-->
+
+                    <!--{% else %}-->
+                    <!--<p>{% blocktrans %}If you have not created an account yet, then please-->
+                        <!--<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>-->
+                    <!--{% endif %}-->
+                    <br>
+                    <p><strong>{% blocktrans %}Don't have an account yet, then please
+                        <a class="btn btn-primary" href="{{ signup_url }}">Sign up</a>{% endblocktrans %}</strong></p>
+
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+

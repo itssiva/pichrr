@@ -1,0 +1,42 @@
+{#Followers in profile#}
+
+        {% if type == 6 %}
+            <div class="followers_content">
+                {% include 'people.html' %}
+            </div>
+        {% elif type == 5 %}
+            <div class="following_content">
+                {% include 'people.html' %}
+            </div>
+        {% endif %}
+
+
+{#In profile navigation#}
+<div class="btn-group" role="group">
+                    <a type="button" class="btn {% if type == 5 %} btn-primary{% else %}btn-default{% endif %}"
+                       href="/following/{{ profile.user.username }}"><i class="fa fa-user-plus" aria-hidden="true"></i>
+
+                        <div class="hidden-xs">Following</div>
+                    </a>
+                </div>
+                <div class="btn-group" role="group">
+                    <a type="button" class="btn {% if type == 6 %} btn-primary{% else %}btn-default{% endif %}"
+                       href="/followers/{{ profile.user.username }}"><i class="fa fa-users" aria-hidden="true"></i>
+                        <div class="hidden-xs">Followers</div>
+                    </a>
+                </div>
+{#In profile.html#}
+<div class="user-choice">
+                    {% if can_edit == True %}
+                        <a title="edit_profile" type="button" class="btn btn-default" href="{% url 'update_profile' %}"><i
+                                class="fa fa-edit" aria-hidden="true"><span
+                                class="hidden-xs">Edit Profile</span></i></a>
+
+                    {% elif is_following == 1 %}
+                        <a title="Un follow" class="btn btn-success" href="{% url 'follow' profile.user.username %}">
+                            <i class="fa fa-plus-circle" aria-hidden="true">Un Follow</i></a>
+                    {% else %}
+                        <a title="follow" class="btn btn-primary" href="{% url 'follow' profile.user.username %}"><i
+                                class="fa fa-plus-plus" aria-hidden="true">Follow</i></a>
+                    {% endif %}
+                </div>

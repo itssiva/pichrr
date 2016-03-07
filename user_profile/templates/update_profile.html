@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="col-sm-3 col-xs-12 settings_pane">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Settings</h3>
+            </div>
+            <div class="list-group">
+                <a href="{% url 'update_profile' %}" class="list-group-item active">Update Profile</a>
+                <a href="{% url 'account_change_password' %}" class="list-group-item">Change Password</a>
+                <a href="{% url 'delete_account' %}" class="list-group-item">Delete Account</a>
+            </div>
+        </div>
+    </div>
+    <form action="{% url 'update_profile' %}" method="post" enctype="multipart/form-data" class="col-sm-8 col-xs-12">
+        {% csrf_token %}
+        <div class="form-group {% if form.first_name.errors %} has-error{% endif %}">
+            <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+            <input type="text" class="form-control" id="{{ form.first_name.id_for_label }}"
+                   placeholder="{{ form.first_name.label }}"
+                   name="{{ form.first_name.html_name }}" value="{{ form.first_name.value }}">
+            {% for error in form.first_name.errors %}
+                <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-group {% if form.last_name.errors %} has-error{% endif %}">
+            <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+            <input type="text" class="form-control" id="{{ form.last_name.id_for_label }}"
+                   placeholder="{{ form.last_name.label }}"
+                   name="{{ form.last_name.html_name }}" value="{{ form.last_name.value|default_if_none:'' }}">
+            {% for error in form.last_name.errors %}
+                <span class="help-block">{{ error }}</span>
+            {% endfor %}
+
+        </div>
+        <div class="form-group {% if form.gender.errors %} has-error{% endif %}">
+            <label for="{{ form.gender.id_for_gender }}">{{ form.gender.label }}</label>
+            <select name="gender" class="form-control" id="gender">
+                <option value="F" {% if form.gender.value == 'F' %} selected {% endif %}>Female</option>
+                <option value="M" {% if form.gender.value == 'M' %} selected {% endif %}>Male</option>
+                <option value="O" {% if form.gender.value == 'O' %} selected {% endif %}>Other</option>
+            </select>
+            {% for error in form.gender.errors %}
+                <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-group {% if form.intro.errors %} has-error{% endif %}">
+            <label for="{{ form.intro.id_for_label }}">{{ form.intro.label }}</label>
+            <textarea rows="5" cols="50" type="text" class="form-control" id="{{ form.intro.id_for_label }}"
+                      name="{{ form.intro.html_name }}">{{ form.intro.value }}</textarea>
+            {% for error in form.intro.errors %}
+                <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-group {% if form.avatar.errors %} has-error{% endif %}">
+            <label for="{{ form.avatar.id_for_label }}">{{ form.avatar.label }}</label>
+            <strong>Currently</strong>
+            <img src="{{ media_url }}{{ form.avatar.value }}" width="100"/>
+
+            <p><strong>Change</strong></p>
+            <input type="file" class="btn btn-default" id="{{ form.avatar.id_for_label }}"
+                   placeholder="{{ form.avatar.label }}" name="{{ form.avatar.html_name }}">
+            {% for error in form.avatar.errors %}
+                <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit">Update</button>
+    </form>
+{% endblock %}

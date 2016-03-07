@@ -1,0 +1,78 @@
+<nav class="navbar navbar-default">
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">pichrr</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li><a href="/"><i class="fa fa-home"></i> Home <span class="sr-only">(current)</span></a></li>
+            <li><a href="{% url 'new' %}"><i class="fa fa-area-chart"></i>New</a></li>
+
+            <li class="dropdown">
+                <a href="/connect" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false"><i class="fa fa-link"></i>Connect <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/about"><i class="fa fa-info-circle"></i>About Us</a></li>
+                    <li><a href="/blog"><i class="fa fa-book"></i>Blog</a></li>
+
+                    <li><a href="/contact"><i class="fa fa-envelope"></i>Contact Us</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="btn-group navbar-btn navbar-left">
+            <button class="btn btn-default"><i class="fa fa-language"></i>{{ lang|default:"Language" }}</button>
+
+            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+
+                <li><a href="/1">English</a></li>
+                <li><a href="/2">Hindi</a></li>
+                <li><a href="/3">Telugu</a></li>
+                <li><a href="/4">Tamil</a></li>
+                <li><a href="/5">Kannada</a></li>
+            </ul>
+        </div>
+        <form class="navbar-form navbar-left" role="search" action="/search/" method="get">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="search title/tag/user" name="q">
+            </div>
+            <button type="submit" class="btn btn-default" title="search"><i class="fa fa-search"></i></button>
+        </form>
+
+
+        {% if user.is_authenticated %}
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/profile/{{ user.username }}" title="My Profile"><i class="fa fa-user"></i> {{ user.username }}</a></li>
+
+                <li><a href="/update_profile" data-toggle="tooltip" data-placement="bottom" data-container="body"
+                       title="Account settings">
+
+                    <span class="glyphicon glyphicon-cog"></span></a>
+                </li>
+                <li><a href="{% url 'account_logout' %}" data-toggle="tooltip" data-placement="bottom"
+                       data-container="body" title="Logout">
+                    <i class="fa fa-sign-out"></i></a>
+                </li>
+                <a href="{% url 'post' %}" title="post" class="btn btn-default navbar-btn navbar-right">Post</a>
+            </ul>
+        {% else %}
+            <a href="/accounts/login" title="Sign in" class="btn btn-default navbar-btn navbar-right">
+                <i class="fa fa-sign-in"></i> Sign in</a>
+
+            <a href="/accounts/signup" title="Sign up" class="btn btn-default navbar-btn navbar-right"
+               style="margin-right: 5px;"><i class="fa fa-user-plus"></i>Sign up</a>
+        {% endif %}
+    </div>
+</nav>

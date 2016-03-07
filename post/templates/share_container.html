@@ -1,0 +1,25 @@
+<div class="share">
+
+<a class="facebook-share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.itssiva.com/view_post/{{ post.ref_id }}/"
+   title="Share on Facebook"><i class="fa fa-facebook fa-lg"></i></a>
+
+        <!-- Button trigger modal -->
+
+    <div class="pull-right">
+        {% if user.is_authenticated %}
+            {% if user == post.user %}
+                <a href="/delete_post/{{ post.ref_id }}">Delete</a>
+                {% else %}
+        <div class="btn btn-default btn-xs" data-toggle="modal" data-target="#report">
+            <i class="fa fa-ellipsis-v"></i>
+        </div>
+                {% endif %}
+        {% else %}
+        <a href="/report/{{ post.ref_id }}" class="btn btn-default btn-xs">
+            <i class="fa fa-ellipsis-v"></i>
+        </a>
+        {% endif %}
+    </div>
+
+</div>
+

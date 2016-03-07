@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="{% url 'post' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group {% if form.title.errors %} has-error{% endif %}">
+    <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+    <input type="text" class="form-control" id="{{ form.title.id_for_label }}" value="{{ form.title.value|default_if_none:'' }}" placeholder="{{ form.title.label }}" name="{{ form.title.html_name }}">
+    {% for error in form.title.errors %}
+    <span class="help-block">{{ error }}</span>
+    {% endfor %}
+    </div>
+    <div class="form-group {% if form.txt_tags.errors %} has-error{% endif %}">
+    <label for="{{ form.txt_tags.id_for_label }}">{{ form.txt_tags.label }}</label>
+    <input type="text" class="form-control" id="{{ form.txt_tags.id_for_label }}" value="{{ form.txt_tags.value|default_if_none:'' }}"placeholder="{{ form.txt_tags.label }}" name="{{ form.txt_tags.html_name }}">
+    {% for error in form.txt_tags.errors %}
+    <span class="help-block">{{ error }}</span>
+    {% endfor %}
+    </div>
+
+    <div class="form-group {% if form.photo.errors %} has-error{% endif %}">
+        <label for="{{ form.photo.id_for_label }}">{{ form.photo.label }}</label>
+        <input type="file" class="btn btn-default" id="{{ form.photo.id_for_label }}" placeholder="{{ form.photo.label }}" name="{{ form.photo.html_name }}">
+        {% for error in form.photo.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group {% if form.creator.errors %} has-error{% endif %}">
+    <label for="{{ form.creator.id_for_label }}">{{ form.creator.label }}</label>
+    <input type="text" class="form-control" id="{{ form.creator.id_for_label }}" value="{{ form.creator.value|default_if_none:'' }}" placeholder="{{ form.creator.label }}" name="{{ form.creator.html_name }}">
+    {% for error in form.creator.errors %}
+    <span class="help-block">{{ error }}</span>
+    {% endfor %}
+    </div>
+
+    <div class="form-group {% if form.is_anonymous.errors %} has-error{% endif %}">
+    <label for="{{ form.is_anonymous.id_for_label }}">{{ form.is_anonymous.label }}</label>
+    <input type="checkbox"  id="{{ form.is_anonymous.id_for_label }}" name="{{ form.is_anonymous.html_name }}" >
+    {% for error in form.is_anonymous.errors %}
+    <span class="help-block">{{ error }}</span>
+    {% endfor %}
+    </div>
+
+
+    <div class="form-group {% if form.languages.errors %} has-error{% endif %}">
+    <label for="{{ form.languages.id_for_label }}">{{ form.languages.label }}</label> :
+    {% for choice in form.languages %}
+    {{ choice }}
+    {% endfor %}
+    {% for error in form.languages.errors %}
+    <span class="help-block">{{ error }}</span>
+    {% endfor %}
+    </div>
+
+
+{##}
+{##}
+{##}
+{#    {{ form.as_p }}#}
+    <button class="btn btn-primary" type="submit">Post</button>
+    Please make sure the <a href="/rules"> website rules</a> are followed
+    </form>
+{% endblock %}

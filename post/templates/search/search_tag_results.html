@@ -1,0 +1,11 @@
+<div class="tags_list">
+{% if tags %}
+    {% for tag in tags %}
+        <p><a href="/tags/{{ tag }}"><i class="fa fa-tags fa-lg"></i> {{ tag }}</a></p>
+    {% endfor %}
+    {% else %}
+    <div class="jumbotron">
+        <h1>Sorry there are no results found</h1>
+        </div>
+{% endif %}
+</div>

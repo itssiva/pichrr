@@ -1,0 +1,7 @@
+{% for person in people %}
+    <div id="person">
+    <a href="/profile/{{ person.username }}" class="btn btn-primary">{{ person.username }}</a>
+    <a href="/follow/{{ person.username }}" class="btn btn-primary dropdown-toggle"><span class="glyphicon glyphicon-plus"></span></a>
+    </div>
+    <br>
+{% endfor %}

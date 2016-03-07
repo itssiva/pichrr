@@ -1,0 +1,16 @@
+{% load template_filters %}
+<div>
+    <div class="element_title">{{ post.title }}</div>
+    {% if post.post_type == 1 %}
+            <video autoplay loop  width="350">
+            <<source src="{{ media_url }}{{ post.photo_url}}" type="video/mp4"></source>
+            <source src="{{ media_url }}{{ post.photo_url|str_replace:".webm"}}" type="video/webm"></source>
+
+            Your browser does not support the video tag.
+            </video>
+            {% else %}
+            <a href="{% url 'view_post' id=post.ref_id %}"><img src="{{ media_url }}{{ post.photo_url }}" class="photo_view"
+                                                                width="{{ post.width }}" height="{{ post.height }}"></a>
+            {% endif %}
+
+</div>

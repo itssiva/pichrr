@@ -1,0 +1,8 @@
+<div class="username">
+{% if not post.is_anonymous %}
+    <a href="/profile/{{ post.user }}"> <span class="glyphicon glyphicon-user"></span> {{ post.user }}</a>
+    {% else %}
+    <i class="fa fa-user fa-lg" style="color: gray"></i> Anonymous
+{% endif %}
+</div>
+

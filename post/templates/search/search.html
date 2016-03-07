@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Search Results</h2>
+    <ul class="nav nav-pills">
+        <li class="active"><a data-toggle="pill" href="#home">Posts</a></li>
+        <li><a data-toggle="pill" href="#menu1">tags</a></li>
+        <li><a data-toggle="pill" href="#menu2">Users</a></li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div id="home" class="tab-pane fade in active">
+            {% if empty %}
+                <div class="jumbotron">
+                    <h1>Sorry there are no results found</h1>
+                </div>
+            {% else %}
+                <div class="col-md-12 col-xs-12">
+                    {% include 'search/search_results.html' %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div id="menu1" class="tab-pane fade">
+            {% include 'search/search_tag_results.html' %}
+
+        </div>
+
+        <div id="menu2" class="tab-pane fade">
+            {% include 'search/user_search_results.html' %}
+        </div>
+    </div>
+{% endblock content %}

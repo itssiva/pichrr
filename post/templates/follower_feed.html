@@ -1,0 +1,12 @@
+<div id="fposts col-md-3 col-xs-12">
+    <p>Following Content</p>
+    {% for post in f_posts %}
+    <div class="element">
+    <div class="element_title">
+    {{ post.title }}
+    </div>
+    <a href="view_post/{{ post.ref_id }}"><img src="{{ media_url }}{{ post.photo_url }}" class="img" alt="Image"></a>
+
+    </div>
+{% endfor %}
+</div>

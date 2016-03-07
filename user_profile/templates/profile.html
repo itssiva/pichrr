@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %} IndFun - Edit Profile {% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+{% block content %}
+
+    <div class="col-lg-12 col-sm-12">
+        <div class="card hovercard">
+            <div class="card-background">
+            </div>
+
+            <div class="useravatar">
+                <img alt="" src="{{ media_url }}{{ profile.get_avatar }}">
+
+                <div class="intro-container hidden-xs">
+                    {{ profile.intro }}
+                </div>
+
+            </div>
+            <div class="card-info"><span class="card-title">{{ profile.user.username }}</span>
+            </div>
+        </div>
+        <div class="profile_nav">
+            <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                    <a type="button" id="stars"
+                       class="btn {% if type == 1 %} btn-primary{% else %}btn-default{% endif %}"
+                       href="/profile/{{ profile.user.username }}"><i class="fa fa-star" aria-hidden="true"></i>
+
+                        <div class="hidden-xs">Posts</div>
+                    </a>
+                </div>
+                <div class="btn-group" role="group">
+                    <a type="button" id="favorites"
+                       class="btn {% if type == 2 %} btn-primary{% else %}btn-default{% endif %}"
+                       href="/favorites/{{ profile.user.username }}"><i class="fa fa-heart-o" aria-hidden="true"></i>
+
+                        <div class="hidden-xs">Favorites</div>
+                    </a>
+                </div>
+                <div class="btn-group" role="group">
+                    <a class="btn {% if type == 3 %} btn-primary{% else %}btn-default{% endif %}"
+                       href="/likes/{{ profile.user.username }}"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+
+                        <div class="hidden-xs">Likes</div>
+                    </a>
+                </div>
+                <div class="btn-group" role="group">
+                    <a type="button" class="btn {% if type == 4 %} btn-primary{% else %}btn-default{% endif %}"
+                       href="/commented/{{ profile.user.username }}"><i class="fa fa-comments" aria-hidden="true"></i>
+
+                        <div class="hidden-xs">Comments</div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="feed">
+        {% include 'posts_in_profile.html' %}
+        </div>
+    </div>
+{% endblock content %}

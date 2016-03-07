@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load comments %}
+
+{% block meta %}
+    <meta property="og:title" content="This is the title"/>
+    <meta property="og:site_name" content="Interval"/>
+    <meta property="og:url" content="https://www.itssiva.com/{{ post.ref_id }}/"/>
+    <meta property="og:description" content="Have fun in your lingo"/>
+    <meta property="fb:app_id" content="1490969551222274"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Siva"/>
+    <meta property="article:publisher" content="Siva"/>
+    <meta property="og:image" content="https://www.itssiva.com{{ media_url }}{{ post.photo_url }}"/>
+    <meta property="og:image:width" content="450"/>
+    <meta property="og:image:height" content="298"/>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".copy").hide();
+            $('#report_post input').on('change', function () {
+                alert($('input[name=report_type]:checked', '#report_post').val());
+            });
+        });
+    </script>
+{% endblock %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <div class="col-md-8 col-sm-12 col-xs-12 post_view">
+        {% include 'image_container_post.html' %}
+        {% if report_form %}
+            {% include 'report.html' %}
+        {% endif %}
+        <div class="meta-container">
+            <div class="interaction">
+                {% if user.is_authenticated %}
+                    <a href="/like/{{ post.ref_id }}" class="like_button" title="like">
+                        <i class="fa fa-thumbs-up fa-lg {% if post.id in upvotes %} color_it {% endif %}"></i>
+                    </a>
+                    <div class="points">
+                        <a href="/view_post/{{ post.ref_id }}">{{ post.rep_count }} </a>
+                    </div>
+                    <a href="/dislike/{{ post.ref_id }}" class="dislike_button" title="dislike">
+                        <i class="fa fa-thumbs-down fa-lg {% if post.id in downvotes %} color_it {% endif %}"></i>
+                    </a>
+
+{#                    <a href="/favorite/{{ post.ref_id }}" class="favorite_button" title="Add to favorites">#}
+{#                        <i class="fa fa-heart fa-lg {% if post.id in favorites %} color_it{% endif %}"></i></a>#}
+                {% else %}
+                    <div class="like_button">
+                        <a href="/like/{{ post.ref_id }}"><i class="fa fa-thumbs-up fa-lg"></i></a>
+                    </div>
+
+                    <div class="points">
+                        <a href="/view_post/{{ post.ref_id }}">{{ post.rep_count }}</a>
+                    </div>
+
+                    <div class="dislike_button">
+                        <a href="/dislike/{{ post.ref_id }}"><i class="fa fa-thumbs-down fa-lg"></i></a>
+                    </div>
+{#                    <div class="favorite_button">#}
+{#                        <a href="/favorite/{{ post.ref_id }}" title="Add to favorites"><i class="fa fa-heart fa-lg"></i></a>#}
+{#                    </div>#}
+                {% endif %}
+
+{#                <div class="download_button">#}
+{#                    <a href="{{ media_url }}{{ post.photo_url }}" download="{{ post.title }}" title="Download"><span#}
+{#                            class="fa fa-download fa-lg"></span></a>#}
+{#                        <a href="{{ media_url }}{{ post.photo_url }}"><img src="{% static 'img/Okay.png'  %}" width="30"#}
+{#                                                                            class="sepia"></a>#}
+{#                </div>#}
+            </div>
+            {% include 'tag_container.html' %}
+            {% include 'username_container.html' %}
+            <div class="share">
+
+                <a class="facebook_share_link_post"
+                   href="https://www.facebook.com/sharer/sharer.php?u=https://www.itssiva.com/view_post/{{ post.ref_id }}/"
+                   title="Share on Facebook"><i class="fa fa-share-square"></i>Share on facebook <i
+                        class="fa fa-facebook fa-lg"></i></a>
+
+                <!-- Button trigger modal -->
+
+                <div class="pull-right">
+                    {% if user.is_authenticated %}
+                        {% if user == post.user %}
+                            <a href="/delete_post/{{ post.ref_id }}"><i class="fa fa-trash-o"></i> Delete</a>
+                        {% else %}
+                            <div class="btn btn-default btn-xs" data-toggle="modal" data-target="#report">
+                                <i class="fa fa-ellipsis-v"></i>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <a href="/report/{{ post.ref_id }}" class="btn btn-default btn-xs">
+                            <i class="fa fa-ellipsis-v"></i>
+                        </a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
+        <div id="comments" style="margin-bottom: 30px">
+            {% get_comment_count for post as comment_count %}
+
+            {% render_comment_form for post %}
+            {% render_comment_list for post %}
+        </div>
+        {#{% include 'comment_form.html' %}#}
+        {#{% include 'comments.html' %}#}
+    </div>
+{% endblock %}
