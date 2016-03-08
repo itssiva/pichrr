@@ -30,4 +30,4 @@
     - social profile login (facebook, google)
     
 
-#Celery used for background image processing, i.e., to make multiple different copies of the uploaded image
+######Celery used for background image processing, i.e., to make multiple different copies of the uploaded image
